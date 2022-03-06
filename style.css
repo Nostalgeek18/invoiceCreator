@@ -21,10 +21,19 @@ h1 {
     font-size: 40px;
 }
 
+
+h2 {
+    color: #F5F5F5;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+}
+
 h4 {
     color: #D5D4D8;
     font-weight: 700;
     font-size: 12px;
+    line-height: 20px;
 }
 
 .flex {
@@ -50,7 +59,6 @@ h4 {
 .bottom-section {
     background-color: #1F2937;
     width: 100%;
-    height: 70vh;
     padding: 5vh 5vw;
 }
 
@@ -61,11 +69,14 @@ h4 {
     padding-bottom: 5vh;
 }
 
+.pricing-details-up{
+    flex-direction: column;
+}
 .price-item {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3vh 5vw;
+    height: 50px;
     background-color: #D1D4F4;
     border-radius: 7px;
     flex-grow: 1;
@@ -80,9 +91,29 @@ h4 {
     flex-direction: column;
 }
 
-h4:first-child{
+.price-infos {
+    padding: 1vh 0vw;
+    position:relative;
+}
+
+.price-infos > *:first-child{
     flex:1;
 }
+
+.remove {
+    color: #D5D4D8;
+    font-weight: 400;
+    font-size: 10px;
+    padding-left: 2vw;
+    cursor: pointer;
+    transition: 0.3s ;
+
+}
+
+.remove:hover {
+    font-size: 12px;
+}
+
 
 .horizontal-bar{
     width: 100%;
