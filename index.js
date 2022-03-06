@@ -4,17 +4,15 @@ const btnPull = document.getElementById('btn-pull');
 const btnWash = document.getElementById('btn-wash');
 const btnMow  = document.getElementById('btn-mow');
 
+const finalPrice     = document.getElementById('final-price');
 const divPricesinfos = document.querySelector('.price-infos-container')
 
-
-let bills = {}
 let arrayBills = [];
 
 /*******************FUNCTIONS*********************/
 
 
 function AddBill(price, nameService){
-
     let htmlMsg = 
     `
     <div class="price-infos flex">
@@ -22,28 +20,43 @@ function AddBill(price, nameService){
         <h2>$${price}</h2>
     </div>
     `
-
+    let billObj = {};
+    let exists = false;
+    billObj['nameService'] = nameService;
+    billObj['price'] = price;
+    billObj['htmlMsg'] = htmlMsg
     //if nameService doesnt exists as a key in the objet array, then we add it with
     //his htmlMessage.
-    if(!bills[nameService]){
-        bills[nameService] = htmlMsg
+    if (arrayBills.length == 0){
+        arrayBills.push(billObj);
+        exists = true;
+    }else {
+        arrayBills.forEach(element => {
+            if(element.nameService == nameService){
+                exists = true;
+            }
+        })
+    }
+
+    if(!exists){
+        arrayBills.push(billObj);
     }
 
     renderTotalBills();
 }
 
 function renderTotalBills(){
-
-    arrayBills = [];
+    let totalPrice = 0;
+    
     divPricesinfos.innerHTML = "";
 
-    for(let nameService in bills){
-        arrayBills.push(bills[nameService]);
+    for (let i=0; i< arrayBills.length ;i++){
+        divPricesinfos.innerHTML += arrayBills[i].htmlMsg;
+        totalPrice += arrayBills[i].price;
     }
 
-    arrayBills.forEach(bill =>{
-        divPricesinfos.innerHTML += bill;
-    })
+    finalPrice.textContent = totalPrice + " $";
+
 }
 
 
