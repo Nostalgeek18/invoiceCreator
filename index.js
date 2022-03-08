@@ -1,5 +1,4 @@
 //Getting elements from the DOM
-
 const btnPull = document.getElementById('btn-pull');
 const btnWash = document.getElementById('btn-wash');
 const btnMow  = document.getElementById('btn-mow');
@@ -7,7 +6,9 @@ const btnMow  = document.getElementById('btn-mow');
 const finalPrice     = document.getElementById('final-price');
 const divPricesinfos = document.querySelector('.price-infos-container')
 
+
 let arrayBills = [];
+
 
 /*******************FUNCTIONS*********************/
 
@@ -16,7 +17,7 @@ function AddBill(price, nameService){
     let htmlMsg = 
     `
     <div class="price-infos flex">
-        <h2>${nameService} <span class="remove"> remove </span></h2>
+        <h2>${nameService} <span id="${nameService}" class="remove"> remove </span></h2>
         <h2>$${price}</h2>
     </div>
     `
@@ -43,6 +44,26 @@ function AddBill(price, nameService){
     }
 
     renderTotalBills();
+    //This code HAS to be executed after renderTotalBills so the remove
+    // elements are in the DOM
+    let removeBtn = document.getElementById(nameService);
+    removeBtn.addEventListener('click', function() {
+        let removeEl = removeBtn.parentNode.parentNode;
+        divPricesinfos.removeChild(removeEl);
+        remove(nameService);
+    })
+
+}
+
+function remove(service){
+    console.log(arrayBills);
+    for (let i=0; i< arrayBills.length ;i++){
+        if(arrayBills[i].nameService === service){
+            arrayBills.splice(0,1);
+        }
+    }
+
+    renderTotalBills();
 }
 
 function renderTotalBills(){
@@ -50,6 +71,8 @@ function renderTotalBills(){
     
     divPricesinfos.innerHTML = "";
 
+    //Loop through our array of objects.
+    //We add the htmlContent of each object into our div from the DOM.
     for (let i=0; i< arrayBills.length ;i++){
         divPricesinfos.innerHTML += arrayBills[i].htmlMsg;
         totalPrice += arrayBills[i].price;
@@ -58,7 +81,6 @@ function renderTotalBills(){
     finalPrice.textContent = totalPrice + " $";
 
 }
-
 
 
 /*****************EVENT LISTENERS*****************/
@@ -80,6 +102,8 @@ btnWash.addEventListener('click', ()=> {
 btnMow.addEventListener('click', ()=> {
     let price =20;
     let nameService = 'Mow Lawn';
-
+    btnMow.disabled = true;
     AddBill(price,nameService);
 })
+
+

@@ -60,6 +60,7 @@ h4 {
     background-color: #1F2937;
     width: 100%;
     padding: 5vh 5vw;
+    height: 100%;
 }
 
 .container-options {
@@ -76,11 +77,7 @@ h4 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
-    background-color: #D1D4F4;
-    border-radius: 7px;
     flex-grow: 1;
-    cursor: pointer;
 }
 
 .price-item:hover {
@@ -122,11 +119,19 @@ h4 {
     margin: 5vh 0vh;
 }
 
+
 .btn-container {
     display:flex;
     justify-content: center;
     align-items: center;
     margin-top: 10vh;
+}
+
+.btn {
+    height: 50px;
+    background-color: #D1D4F4;
+    border-radius: 7px;
+    cursor: pointer;
 }
 
 .btn-send {
@@ -144,6 +149,13 @@ h4 {
 .btn-send:hover {
     background-color: #244da3;
 }
+
+.btn-disabled {
+    background-color: #333;
+    cursor: default;
+}
+
+
 
 #final-price {
     display:flex;
