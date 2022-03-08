@@ -17,7 +17,7 @@ function AddBill(price, nameService){
     let htmlMsg = 
     `
     <div class="price-infos flex">
-        <h2>${nameService} <span id="${nameService}" class="remove"> remove </span></h2>
+        <h2>${nameService} <span id="${nameService}" onClick="remove(this.id);" class="remove"> remove </span></h2>
         <h2>$${price}</h2>
     </div>
     `
@@ -44,26 +44,19 @@ function AddBill(price, nameService){
     }
 
     renderTotalBills();
-    //This code HAS to be executed after renderTotalBills so the remove
-    // elements are in the DOM
-    let removeBtn = document.getElementById(nameService);
-    removeBtn.addEventListener('click', function() {
-        let removeEl = removeBtn.parentNode.parentNode;
-        divPricesinfos.removeChild(removeEl);
-        remove(nameService);
-    })
-
 }
 
-function remove(service){
-    console.log(arrayBills);
-    for (let i=0; i< arrayBills.length ;i++){
-        if(arrayBills[i].nameService === service){
-            arrayBills.splice(0,1);
-        }
-    }
-
-    renderTotalBills();
+function remove(id){
+      nameService = id;
+      let removeBtn = document.getElementById(nameService);
+        let removeEl = removeBtn.parentNode.parentNode;
+        index = arrayBills.findIndex(x => x.nameService === nameService);
+        console.log(index)
+        divPricesinfos.removeChild(removeEl);
+           if(arrayBills[index].nameService){
+               arrayBills.splice(index, 1);
+           }
+         renderTotalBills(); 
 }
 
 function renderTotalBills(){
@@ -105,5 +98,3 @@ btnMow.addEventListener('click', ()=> {
     btnMow.disabled = true;
     AddBill(price,nameService);
 })
-
-
