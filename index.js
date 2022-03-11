@@ -2,9 +2,13 @@
 const btnPull = document.getElementById('btn-pull');
 const btnWash = document.getElementById('btn-wash');
 const btnMow  = document.getElementById('btn-mow');
+const btnSend = document.querySelector('.btn-send');
 
 const finalPrice     = document.getElementById('final-price');
 const divPricesinfos = document.querySelector('.price-infos-container')
+
+const msgSuccess = document.querySelector(".success");
+const msgError   = document.querySelector(".error")
 
 
 let arrayBills = [];
@@ -14,6 +18,9 @@ let arrayBills = [];
 
 
 function AddBill(price, nameService){
+    msgSuccess.style.display = "none";
+    msgError.style.display   = "none";
+
     let htmlMsg = 
     `
     <div class="price-infos flex">
@@ -97,4 +104,23 @@ btnMow.addEventListener('click', ()=> {
     let nameService = 'Mow Lawn';
     btnMow.disabled = true;
     AddBill(price,nameService);
+})
+
+// btnSend.addEventListener('click', ()=>{
+//     arrayBills = [];
+//     renderTotalBills();
+// })
+
+btnSend.addEventListener('click', ()=> {
+    msgError.style.display = "none";
+    msgSuccess.style.display = "none";
+
+    if (arrayBills.length == 0){
+        msgError.style.display = "block";
+    }else {
+        msgSuccess.style.display = "block";
+        arrayBills = [];
+        renderTotalBills();
+    }
+
 })

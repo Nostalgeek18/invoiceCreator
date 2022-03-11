@@ -51,11 +51,6 @@ h4 {
     gap:10px;
 }
 
-.upper-section p {
-    font-size: 16px;
-    color: white;
-}
-
 .bottom-section {
     background-color: #1F2937;
     width: 100%;
@@ -164,4 +159,17 @@ h4 {
     justify-content: flex-end;
     font-weight: 600;
     font-size: 36px;
+}
+
+.success {
+    color: #15e494;
+}
+
+.error {
+    color: rgb(192, 25, 25)
+}
+
+.msg {
+    display: none;
+    font-weight: 600;
 }
